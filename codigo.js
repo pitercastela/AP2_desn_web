@@ -29,6 +29,11 @@ const manipulaClick = (e) => {
 
 const limpacontainer = () => {container.innerHTML = ""}
 
+let copia_all1 = pega_json(`${url}all`);
+let copia_feminino1 = pega_json(`${url}feminino`);
+let copia_masculino1 = pega_json(`${url}masculino`);
+
+
 const montacard = (atleta) =>{
     const cartao = document.createElement("article");
     const nome = document.createElement("h1");
@@ -59,23 +64,69 @@ const montacard = (atleta) =>{
 };
 
 
+const campo_pesquisa = document.querySelector('.campo_pesquisa')
+
+
+campo_pesquisa.addEventListener('input', (campo) =>{
+    const campo_valor = campo.target.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+
+    if(sessionStorage.getItem('genero') === 'qualquer'){
+        limpacontainer();
+        copia_all1.then( (r) => r.forEach(
+            (ele) =>{ if(ele.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(campo_valor)) {
+                container.appendChild(montacard(ele))
+         }}))}
+    if(sessionStorage.getItem('genero') === 'masculino'){
+        limpacontainer();
+        copia_masculino1.then( (r) => r.forEach(
+            (ele) =>{ if(ele.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(campo_valor)) {
+                container.appendChild(montacard(ele))
+         }}))}
+    if(sessionStorage.getItem('genero') === 'feminino'){
+        limpacontainer();
+        copia_feminino1.then( (r) => r.forEach(
+            (ele) =>{ if(ele.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(campo_valor)) {
+                container.appendChild(montacard(ele))
+         }}))}
+        })
+
+
+            /*copia_all1.then( (r) => r.forEach((ele) =>{ if(ele.nome.includes(campo_valor)) {container.appendChild(montacard(ele))}}))
+            */
+/*
+    copia_all = copia_all1.Object.values(objects).filter((eventData) => {
+        if (campo_valor === ""){return eventData}
+        else if (eventData.name.toLowerCase().includes(campo_valor)) {return eventData}
+    })
+*/
+
+
+
+
+
+
+
 if (sessionStorage.getItem('logado')){
-    sumidor.innerHTML = 'document.getElementById("cabeçalho").style.visibility = "hidden"'
-        pega_json(`${url}all`).then( (r) => r.forEach(
-        (ele) => container.appendChild(montacard(ele))))
+    sumidor1.innerHTML = 'document.getElementById("cabeçalho").style.visibility = "hidden"'
     document.getElementById('masculino').onclick = () =>{
         limpacontainer();
-        pega_json(`${url}masculino`).then( (r) => r.forEach(
+        sessionStorage.setItem('genero', 'masculino')
+        copia_masculino1.then( (r) => r.forEach(
         (ele) => container.appendChild(montacard(ele))))};
+
     document.getElementById('feminino').onclick = () => {
         limpacontainer();
-        pega_json(`${url}feminino`).then( (r) => r.forEach(
+        sessionStorage.setItem('genero', 'feminino')
+        copia_feminino1.then( (r) => r.forEach(
         (ele) => container.appendChild(montacard(ele))))};
+
     document.getElementById('all').onclick = () => {
         limpacontainer();
-        pega_json(`${url}all`).then( (r) => r.forEach(
+        sessionStorage.setItem('genero', 'qualquer')
+        copia_all1.then( (r) => r.forEach(
         (ele) => container.appendChild(montacard(ele))))};
-    }
+
+    }else{    sumidor1.innerHTML = 'document.getElementById("jogadores").style.visibility = "hidden"'}
 
 
 const manipulaBotao = () => {
@@ -90,9 +141,12 @@ const manipulaBotao = () => {
 
 document.getElementById('botao').onclick = manipulaBotao;
 
+
+
 if (sessionStorage.getItem('logado')){
+
 document.getElementById('sair').onclick = () => {
     sessionStorage.removeItem('logado');
-    sumidor.innerHTML = ''
     location.reload();
+
 }}
