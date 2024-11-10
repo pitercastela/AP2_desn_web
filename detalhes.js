@@ -35,7 +35,7 @@ if (sessionStorage.getItem('logado')){
 pega_json(`https://botafogo-atletas.mange.li/2024-1/${id}`).then( (r) => montapagina(r));
 
 }else{
-document.body.innerHTML = "<h1>vc é burro n possui senha</h1>"
+document.body.innerHTML = "<h1>Você não possui autorização para acessar essa página</h1>"
 
 }
 const achaCookie = ( chave ) =>{

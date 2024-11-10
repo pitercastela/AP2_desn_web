@@ -3,15 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0">
-    <title>Document</title>
-    <script src="md5-min.js"></script>
-    <script src="feminino.js"></script>
+    <title>Jogadores</title>
+    <script src="sha256-min.js"></script>
+
     <script src="codigo.js" defer></script>
     <link href="estilo.css" rel ="stylesheet">
+    <link rel="icon" type="image/png" href="escudo.png" sizes="16x16">
 </head>
 <body>
-    <input type="password" id="senha"><button id="botao">tentar</button>
-    <button id="logout">logout</button>
+
+    <div id = "pagina">
+    <div id = "cabeçalho">
+    <input type="password" id="senha"><button id="botao">Tentar</button></div>
+
+    <h1>Elenco botafogo</h1>
+    <button id="masculino">Masculino</button>
+    <button id="feminino">Feminino</button>
+    <button id="all">All</button>
+    <button id="sair">sair</button>
+    <script id = "sumidor"></script>
     <div id="container"></div>
+    </div>
 </body>
 </html>

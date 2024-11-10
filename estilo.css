@@ -1,3 +1,9 @@
+html {
+    background-color:rgb(253, 236, 218) ;
+}
+
+
+
 #container{
     display: flex;
     flex-wrap: wrap;
@@ -5,12 +11,16 @@
 
 #container > article{
     width: 20rem;
-    border: solid rebeccapurple 1px;
-    border-radius: 5px;
-    margin: .5rem;
+    border: solid rgb(219, 209, 255) 3px;
+    border-radius: 8px;
+    margin: 2rem;
     padding: .3rem;
+    background-color: black;
+    color: white;
 }
 
 #container img{
     width: 100%;
 }
+
+

@@ -27,6 +27,7 @@ const manipulaClick = (e) => {
     window.location = url;
 }
 
+const limpacontainer = () => {container.innerHTML = ""}
 
 const montacard = (atleta) =>{
     const cartao = document.createElement("article");
@@ -58,19 +59,30 @@ const montacard = (atleta) =>{
 };
 
 
-
-pega_json(`${url}masculino`).then( (r) => r.forEach(
-    (ele) => container.appendChild(montacard(ele))))
-
-
-
-
+if (sessionStorage.getItem('logado')){
+    sumidor.innerHTML = 'document.getElementById("cabeçalho").style.visibility = "hidden"'
+        pega_json(`${url}all`).then( (r) => r.forEach(
+        (ele) => container.appendChild(montacard(ele))))
+    document.getElementById('masculino').onclick = () =>{
+        limpacontainer();
+        pega_json(`${url}masculino`).then( (r) => r.forEach(
+        (ele) => container.appendChild(montacard(ele))))};
+    document.getElementById('feminino').onclick = () => {
+        limpacontainer();
+        pega_json(`${url}feminino`).then( (r) => r.forEach(
+        (ele) => container.appendChild(montacard(ele))))};
+    document.getElementById('all').onclick = () => {
+        limpacontainer();
+        pega_json(`${url}all`).then( (r) => r.forEach(
+        (ele) => container.appendChild(montacard(ele))))};
+    }
 
 
 const manipulaBotao = () => {
     const texto = document.getElementById('senha').value;
-    if (hex_md5(texto) === '5029cc9dd0295ded2f500084635c18c1'){
+    if (hex_sha256(texto) === 'ee9a289648199d7f8327e2f519f0d8f12471054935c259559a0cf0091fb79da8'){
         sessionStorage.setItem('logado', 'sim')
+        location.reload()
     }else{
         alert('vc errou a senha bobão!')
     }
@@ -78,4 +90,9 @@ const manipulaBotao = () => {
 
 document.getElementById('botao').onclick = manipulaBotao;
 
-document.getElementById('logout').onclick = () => {sessionStorage.removeItem('logado')}
+if (sessionStorage.getItem('logado')){
+document.getElementById('sair').onclick = () => {
+    sessionStorage.removeItem('logado');
+    sumidor.innerHTML = ''
+    location.reload();
+}}
