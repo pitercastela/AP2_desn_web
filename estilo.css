@@ -13,8 +13,6 @@ html {
     letter-spacing: 1px;
     cursor: pointer;
     box-shadow: inset 0 0 0 0 #D80286;
-    -webkit-transition: ease-out 0.4s;
-    -moz-transition: ease-out 0.4s;
     transition: ease-out 0.4s;
     background-color: black;
     margin: 0px;
@@ -47,7 +45,9 @@ html {
     top: 187px;
 }
 
-
+.slide_down:hover {
+    box-shadow: inset 0 100px 0 0 #8A00C4;
+  }
 
 #container{
     display: flex;
