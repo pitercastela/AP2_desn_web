@@ -1,5 +1,6 @@
 const url = "https://botafogo-atletas.mange.li/2024-1/";
 
+
 const pega_json = async (caminho) => {
 
     const resposta = await fetch(caminho);
@@ -12,18 +13,6 @@ const container = document.getElementById("container");
 const manipulaClick = (e) => {
     const id = e.currentTarget.dataset.id
     const url = `detalhes.html?id=${id}`
-
-
-    //cookie
-    document.cookie = `id=${id}`;
-    document.cookie = `altura=${e.currentTarget.dataset.altura}`
-
-    //local storage
-    localStorage.setItem('id', id);
-    localStorage.setItem('dados', JSON.stringify(e.currentTarget.dataset))
-
-    sessionStorage.setItem('dados', JSON.stringify(e.currentTarget.dataset))
-
     window.location = url;
 }
 
@@ -50,10 +39,6 @@ const montacard = (atleta) =>{
 
     descri.innerHTML = atleta.detalhes
     cartao.appendChild(descri);
-
-   /* link.innerText = "saiba mais"
-    link.href = `detalhes.html?id=${atleta.id}`
-    cartao.appendChild(link)*/
 
     cartao.onclick = manipulaClick;
     cartao.dataset.id = atleta.id;
@@ -90,24 +75,9 @@ campo_pesquisa.addEventListener('input', (campo) =>{
          }}))}
         })
 
-
-            /*copia_all1.then( (r) => r.forEach((ele) =>{ if(ele.nome.includes(campo_valor)) {container.appendChild(montacard(ele))}}))
-            */
-/*
-    copia_all = copia_all1.Object.values(objects).filter((eventData) => {
-        if (campo_valor === ""){return eventData}
-        else if (eventData.name.toLowerCase().includes(campo_valor)) {return eventData}
-    })
-*/
-
-
-
-
-
-
-
 if (sessionStorage.getItem('logado')){
-    sumidor1.innerHTML = 'document.getElementById("cabeçalho").style.visibility = "hidden"'
+    sumidor1.innerHTML = ''
+    sumidor2.innerHTML = 'document.getElementById("cabeçalho").style.visibility = "hidden"'
     document.getElementById('masculino').onclick = () =>{
         limpacontainer();
         sessionStorage.setItem('genero', 'masculino')
@@ -126,7 +96,8 @@ if (sessionStorage.getItem('logado')){
         copia_all1.then( (r) => r.forEach(
         (ele) => container.appendChild(montacard(ele))))};
 
-    }else{    sumidor1.innerHTML = 'document.getElementById("jogadores").style.visibility = "hidden"'}
+    }else{    sumidor1.innerHTML = 'document.getElementById("jogadores").style.visibility = "hidden"'
+              sumidor2.innerHTML = ''}
 
 
 const manipulaBotao = () => {
@@ -139,7 +110,7 @@ const manipulaBotao = () => {
     }
 }
 
-document.getElementById('botao').onclick = manipulaBotao;
+document.getElementById('login').onclick = manipulaBotao;
 
 
 

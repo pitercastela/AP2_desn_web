@@ -14,21 +14,28 @@
 
 
     <div id = "cabeçalho">
-    <input type="password" id="senha"><button id="botao">Tentar</button>
+    <p>A senha é libertadores</p>
+    <input type="password" id="senha" class="barra_texto">
+    <button id="login" class="button_slide slide_down">Login</button>
     </div>
 
     <div id = "jogadores">
     <h1>Elenco botafogo</h1>
-    <button id="masculino">Masculino</button>
-    <button id="feminino">Feminino</button>
-    <button id="all">All</button>
-    <button id="sair">sair</button>
-    <h3>campo de pesquisa</h3>
-    <input type="text" class="campo_pesquisa">
+    <div id="outer">
+    <div class="button_slide slide_down" id="masculino">Masculino</div>
+    <div class="button_slide slide_down" id="feminino">Feminino</div>
+    <div class="button_slide slide_down" id="all">All</div>
+    <div class="button_slide slide_down" id="sair">sair</div>
+    </div>
+    <input type="text" class="campo_pesquisa barra_texto" placeholder="pesquise aqui...">
+
+
     <div id="container"></div>
+
 </div>
 
 
     <script id = "sumidor1"></script>
+    <script id = "sumidor2"></script>
 </body>
 </html>

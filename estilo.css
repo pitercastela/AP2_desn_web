@@ -1,5 +1,50 @@
 html {
-    background-color:rgb(253, 236, 218) ;
+    background-color:rgba(0, 0, 0, 0.871) ;
+    color: white;
+}
+
+.button_slide {
+    color: #FFF;
+    border: 2px solid #8A00C4;
+    border-radius: 20px;
+    padding: 18px 54px;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #D80286;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
+    background-color: black;
+    margin: 0px;
+
+    position: absolute;
+}
+
+#login{
+    margin: 10px;
+    top: 31px;
+}
+
+#masculino{
+    left: 400px;
+}
+
+#feminino{
+    left: 610px;
+}
+
+#all{
+    left: 810px;
+}
+
+#sair{
+    left: 963px;
+}
+
+#masculino, #feminino, #all, #sair{
+    top: 187px;
 }
 
 
@@ -11,7 +56,7 @@ html {
 
 #container > article{
     width: 20rem;
-    border: solid rgb(219, 209, 255) 3px;
+    border: solid #8A00C4 3px;
     border-radius: 8px;
     margin: 2rem;
     padding: .3rem;
@@ -21,6 +66,22 @@ html {
 
 #container img{
     width: 100%;
+}
+
+#outer {
+    width: 364px;
+    margin: 50px auto 0 auto;
+    text-align: center;
+  }
+
+.barra_texto{
+    width: 350px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    border: solid #8A00C4 3px;
+    border-radius: 15px;
 }
 
 
