@@ -16,18 +16,28 @@
     <div id = "cabeçalho">
     <p>A senha é libertadores</p>
     <input type="password" id="senha" class="barra_texto">
-    <button id="login" class="button_slide slide_down">Login</button>
+    <button id="login" class="botao">Login</button>
     </div>
 
-    <div id = "jogadores">
-    <h1>Elenco botafogo</h1>
-    <div id="outer">
-    <div class="button_slide slide_down" id="masculino">Masculino</div>
-    <div class="button_slide slide_down" id="feminino">Feminino</div>
-    <div class="button_slide slide_down" id="all">All</div>
-    <div class="button_slide slide_down" id="sair">sair</div>
-    </div>
-    <input type="text" class="campo_pesquisa barra_texto" placeholder="pesquise aqui...">
+
+    <div id="main">
+<h1>Elenco botafogo</h1>
+<input type="text" class="campo_pesquisa barra_texto" placeholder="pesquise aqui...">
+<button class="botao" id="sair">sair</button>
+
+    <div id="botoes">
+        <button class="botao" id="masculino">Masculino</button>
+        <button class="botao" id="feminino">Feminino</button>
+        <button class="botao" id="all">Todo o elenco</button>
+
+        </div>
+
+        <select id="seletor">
+            <option value="" disabled selected>Selecione o elenco</option>
+            <option value="masculino" >Masculino</option>
+            <option value="feminino" >Feminino</option>
+            <option value="all" >Todo o elenco</option>
+        </select>
 
 
     <div id="container"></div>

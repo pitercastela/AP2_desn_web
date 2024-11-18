@@ -27,7 +27,7 @@ const montacard = (atleta) =>{
     const cartao = document.createElement("article");
     const nome = document.createElement("h1");
     const imagem = document.createElement("img");
-    const descri = document.createElement("p");
+    /*const descri = document.createElement("p");*/
     const link = document.createElement("a")
 
     nome.innerHTML = atleta.nome;
@@ -37,8 +37,8 @@ const montacard = (atleta) =>{
     imagem.src = atleta.imagem;
     cartao.appendChild(imagem);
 
-    descri.innerHTML = atleta.detalhes
-    cartao.appendChild(descri);
+    /*descri.innerHTML = atleta.detalhes
+    cartao.appendChild(descri);*/
 
     cartao.onclick = manipulaClick;
     cartao.dataset.id = atleta.id;
@@ -75,9 +75,14 @@ campo_pesquisa.addEventListener('input', (campo) =>{
          }}))}
         })
 
+
+        function faz(){
+            alert('foi')
+        }
+
 if (sessionStorage.getItem('logado')){
     sumidor1.innerHTML = ''
-    sumidor2.innerHTML = 'document.getElementById("cabeçalho").style.visibility = "hidden"'
+    sumidor2.innerHTML = 'document.getElementById("cabeçalho").style.display = "none"'
     document.getElementById('masculino').onclick = () =>{
         limpacontainer();
         sessionStorage.setItem('genero', 'masculino')
@@ -96,7 +101,30 @@ if (sessionStorage.getItem('logado')){
         copia_all1.then( (r) => r.forEach(
         (ele) => container.appendChild(montacard(ele))))};
 
-    }else{    sumidor1.innerHTML = 'document.getElementById("jogadores").style.visibility = "hidden"'
+    const seletor = document.getElementById('seletor')
+    seletor.addEventListener('input', mudacartao)
+        function mudacartao() {
+        if(seletor.value === 'masculino') {
+            limpacontainer();
+            sessionStorage.setItem('genero', 'masculino')
+            copia_masculino1.then( (r) => r.forEach(
+            (ele) => container.appendChild(montacard(ele))))};
+        if(seletor.value === 'feminino') {
+            limpacontainer();
+            sessionStorage.setItem('genero', 'feminino')
+            copia_feminino1.then( (r) => r.forEach(
+            (ele) => container.appendChild(montacard(ele))))};
+        if(seletor.value === 'all'){
+            limpacontainer();
+            sessionStorage.setItem('genero', 'qualquer')
+            copia_all1.then( (r) => r.forEach(
+            (ele) => container.appendChild(montacard(ele))))};
+            }
+
+
+
+
+    }else{    sumidor1.innerHTML = 'document.getElementById("main").style.display = "none"'
               sumidor2.innerHTML = ''}
 
 
@@ -106,7 +134,7 @@ const manipulaBotao = () => {
         sessionStorage.setItem('logado', 'sim')
         location.reload()
     }else{
-        alert('vc errou a senha bobão!')
+        alert('Senha Incorreta')
     }
 }
 
