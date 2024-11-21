@@ -2,11 +2,13 @@ const url = "https://botafogo-atletas.mange.li/2024-1/";
 
 
 const pega_json = async (caminho) => {
-
+    try{
     const resposta = await fetch(caminho);
     const dados = await resposta.json();
     return dados;
-
+}catch{
+    alert('dados indisponíveis no momento')
+}
 }
 
 const container = document.getElementById("container");
@@ -45,6 +47,7 @@ const montacard = (atleta) =>{
     cartao.dataset.njogos = atleta.n_jogos;
     cartao.dataset.altura = atleta.altura;
 
+
     return cartao
 };
 
@@ -55,19 +58,19 @@ const campo_pesquisa = document.querySelector('.campo_pesquisa')
 campo_pesquisa.addEventListener('input', (campo) =>{
     const campo_valor = campo.target.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 
-    if(sessionStorage.getItem('genero') === 'qualquer'){
+    if(localStorage.getItem('genero') === 'qualquer'){
         limpacontainer();
         copia_all1.then( (r) => r.forEach(
             (ele) =>{ if(ele.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(campo_valor)) {
                 container.appendChild(montacard(ele))
          }}))}
-    if(sessionStorage.getItem('genero') === 'masculino'){
+    if(localStorage.getItem('genero') === 'masculino'){
         limpacontainer();
         copia_masculino1.then( (r) => r.forEach(
             (ele) =>{ if(ele.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(campo_valor)) {
                 container.appendChild(montacard(ele))
          }}))}
-    if(sessionStorage.getItem('genero') === 'feminino'){
+    if(localStorage.getItem('genero') === 'feminino'){
         limpacontainer();
         copia_feminino1.then( (r) => r.forEach(
             (ele) =>{ if(ele.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(campo_valor)) {
@@ -80,24 +83,24 @@ campo_pesquisa.addEventListener('input', (campo) =>{
             alert('foi')
         }
 
-if (sessionStorage.getItem('logado')){
+if (localStorage.getItem('logado')){
     sumidor1.innerHTML = ''
     sumidor2.innerHTML = 'document.getElementById("cabeçalho").style.display = "none"'
     document.getElementById('masculino').onclick = () =>{
         limpacontainer();
-        sessionStorage.setItem('genero', 'masculino')
+        localStorage.setItem('genero', 'masculino')
         copia_masculino1.then( (r) => r.forEach(
         (ele) => container.appendChild(montacard(ele))))};
 
     document.getElementById('feminino').onclick = () => {
         limpacontainer();
-        sessionStorage.setItem('genero', 'feminino')
+        localStorage.setItem('genero', 'feminino')
         copia_feminino1.then( (r) => r.forEach(
         (ele) => container.appendChild(montacard(ele))))};
 
     document.getElementById('all').onclick = () => {
         limpacontainer();
-        sessionStorage.setItem('genero', 'qualquer')
+        localStorage.setItem('genero', 'qualquer')
         copia_all1.then( (r) => r.forEach(
         (ele) => container.appendChild(montacard(ele))))};
 
@@ -106,17 +109,17 @@ if (sessionStorage.getItem('logado')){
         function mudacartao() {
         if(seletor.value === 'masculino') {
             limpacontainer();
-            sessionStorage.setItem('genero', 'masculino')
+            localStorage.setItem('genero', 'masculino')
             copia_masculino1.then( (r) => r.forEach(
             (ele) => container.appendChild(montacard(ele))))};
         if(seletor.value === 'feminino') {
             limpacontainer();
-            sessionStorage.setItem('genero', 'feminino')
+            localStorage.setItem('genero', 'feminino')
             copia_feminino1.then( (r) => r.forEach(
             (ele) => container.appendChild(montacard(ele))))};
         if(seletor.value === 'all'){
             limpacontainer();
-            sessionStorage.setItem('genero', 'qualquer')
+            localStorage.setItem('genero', 'qualquer')
             copia_all1.then( (r) => r.forEach(
             (ele) => container.appendChild(montacard(ele))))};
             }
@@ -131,7 +134,7 @@ if (sessionStorage.getItem('logado')){
 const manipulaBotao = () => {
     const texto = document.getElementById('senha').value;
     if (hex_sha256(texto) === 'ee9a289648199d7f8327e2f519f0d8f12471054935c259559a0cf0091fb79da8'){
-        sessionStorage.setItem('logado', 'sim')
+        localStorage.setItem('logado', 'sim')
         location.reload()
     }else{
         alert('Senha Incorreta')
@@ -142,10 +145,10 @@ document.getElementById('login').onclick = manipulaBotao;
 
 
 
-if (sessionStorage.getItem('logado')){
+if (localStorage.getItem('logado')){
 
 document.getElementById('sair').onclick = () => {
-    sessionStorage.removeItem('logado');
+    localStorage.removeItem('logado');
     location.reload();
 
 }}
